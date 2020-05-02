@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="topbar">
+  <!-- Breadcrumbs-->
+  <ul class="breadcrumbs">
+    <li class="breadcrumbs-item">
+      <a class="breadcrumbs-link" href="{% url 'home' %}"><span class="breadcrumbs-icon fa-home"></span><span>Dashboard</span></a>
+    </li>
+    <li class="breadcrumbs-item">
+      <a class="breadcrumbs-link" href="{% url 'orders' %}"><span class="breadcrumbs-icon fa-dropbox"></span><span>Pedidos</span></a>
+    </li>
+    <li class="breadcrumbs-item">#{{order.id}}</li>
+  </ul>
+</section>
+<section class="section-sm">
+  <div class="container-fluid">
+    <div class="panel panel-nav">
+      <div class="panel-body p-0">
+        <div class="table-responsive">
+          <table class="table table-borderless table-vertical-align">
+            <thead class="text-center">
+              <tr class="border-bottom bg-lighter">
+                <th>Item</th>
+                <th>SKU</th>
+                <th>Nombre</th>
+                <th>Adicionales</th>
+                <th>Precio unitario</th>
+                <th>Cantidad</th>
+                <th>Precio total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order_item in order.order_items.all %}
+                <tr class="text-center">
+                  <td>{{forloop.counter}}</td>
+                  <td>{{order_item.sku}}</td>
+                  <td>{{order_item.name}}</td>
+                  <td>
+                    <p>
+                      {% for item_choice in order_item.order_item_choices.all %}
+                        {{item_choice.name}} {% if not forloop.last  %}
+                          <br>
+                        {% endif %}
+                      {% endfor %}
+                    </p>
+                  </td>
+                  <td>{{order_item.price}}</td>
+                  <td>{{order_item.quantity}}</td>
+                  <td>{{order_item.price}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

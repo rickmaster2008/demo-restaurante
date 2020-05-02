@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+{% load www_tags %}
+
+{% block content %}
+    <section class="topbar">
+        <!-- Breadcrumbs-->
+        <ul class="breadcrumbs">
+          <li class="breadcrumbs-item"><a class="breadcrumbs-link" href="{% url 'home' %}"><span class="breadcrumbs-icon fa-home"></span><span>Dashboard</span></a></li>
+          <li class="breadcrumbs-item">Products
+          </li>
+        </ul>
+      </section>
+      {% if product %}
+        <div class="alert alert-dismissible alert-success mt-1">
+        Haz creado tu producto {{product.name}}
+      </div>
+      {% endif %}
+      <section class="section-sm">
+        <div class="container-fluid">
+          <div class="panel panel-nav">
+            <div class="panel-header d-flex flex-wrap align-items-center justify-content-between">
+              <h3 class="panel-title">Crear nuevo Producto</h3>
+              <ul class="nav nav-tabs scroller scroller-horizontal" role="tablist">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#panelTab1" role="tab" aria-controls="panelTab1" aria-selected="true">General</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#panelTab2" role="tab" aria-controls="panelTab2" aria-selected="false">Description</a></li>
+              </ul>
+            </div>
+            <div class="panel-body">
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="panelTab1" role="tabpanel">
+                    <div class="row row-15">
+                      <div class="col-md-4 col-xl-3">
+                        <div class="tower-file">
+                          {{form.image}}
+                          <div class="group-10">
+                            <label class="btn btn-lg btn-primary" for="id_image"><span class="mdi-upload"></span><span>Imagen</span></label>
+                            <button class="tower-file-clear btn btn-lg btn-secondary align-top" type="button">Clear</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8 col-xl-9">
+                        <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="basic-addon1"><span class="fa-tag"></span></label>
+                          </div>
+                          {{form.name}}
+                        </div>
+                        <div class="form-group">
+                        {{form.description}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="panelTab2" role="tabpanel">
+                    <div class="row row-30">
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="basic-addon4"><span class="fa-barcode"></span></label>
+                          </div>
+                          {{form.sku}}
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                      {{form.category}}
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="basic-addon2"><span class="fa-usd"></span></label>
+                          </div>
+                          {{form.price}}
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <hr class="m-0">
+                      </div>
+                      <div class="col-sm-8">
+                        <div class="custom-control custom-checkbox">
+                        {{form.in_stock}}
+                          <label class="custom-control-label" for="id_in_stock"><span class="font-italic">En Stock</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 text-right">
+                        <button class="btn btn-primary" type="submit">Crear producto</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-body p-0">
+              <div class="table-responsive">
+                <table class="table table-sm table-borderless table-vertical-align">
+                  <thead>
+                    <tr class="border-bottom bg-lighter">
+                      <th class="text-center">Select</th>
+                      <th>SKU</th>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Precio</th>
+                      <th>En stock</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for product in products %}
+                    <tr>
+                      <td class="text-center">
+                        <div class="custom-control custom-checkbox custom-checkbox-light">
+                          <input class="custom-control-input" type="checkbox" id="jsjunfvy"/>
+                          <label class="custom-control-label" for="jsjunfvy">
+                          </label>
+                        </div>
+                      </td>
+                      <td> {% if product.sku %}{{product.sku}}{% endif %} </td>
+                      <td><img src="{{ product.image.url }}" width="50" height="50" alt=""></td>
+                      <td>{{product.name}}</td>
+                      <td>{{product.price}}</td>
+                      {% if product.in_stock %}
+                        <td class="text-success"><b>En Stock</b></td>
+                      {% else %}
+                      <td class="text-danger"><b>Agotado</b></td>
+                      {% endif %}
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn dropdown-toggle btn-success btn-sm" data-toggle="dropdown"><span>Acciones</span>
+                          </button>
+                          <div class="dropdown-menu"><a class="dropdown-item" href="{% url 'product-detail' product.id %}">Editar</a><a class="dropdown-item" href="{% url 'product-delete' product.id %}">Eliminar</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock content %}
+
+{% block js %}
+  <script src="{% static 'www/js/products.js' %}"></script>
+{% endblock js %}

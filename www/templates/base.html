@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="rd-navbar-sidebar-active page-small-footer" lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:title" content="Template Monster Admin Template">
+    <meta property="og:description" content="brevis, barbatus clabulares aliquando convertam de dexter, peritus capio. devatio clemens habitio est.">
+    <meta property="og:image" content="http://digipunk.netii.net/images/radar.gif">
+    <meta property="og:url" content="http://digipunk.netii.net">
+    <link rel="icon" href="{% static 'www/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'www/components/base/base.css' %}">
+    <script src="{% static 'www/components/base/script.js' %}"></script>
+  </head>
+<body>
+    <div class="page">
+      <header class="section page-header">
+        <!--RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar">
+            <div class="rd-navbar-panel">
+              <div class="rd-navbar-panel-cell">
+                <button class="btn btn-navbar-panel rd-navbar-sidebar-toggle" data-navigation-switch="data-navigation-switch"><span class="fa-bars"></span></button>
+              </div>
+              <div class="rd-navbar-panel-cell rd-navbar-panel-cell-fullscreen">
+                <button class="btn btn-navbar-panel" data-fullscreen="html"><span class="fa-arrows-alt"></span></button>
+              </div>
+            </div>
+            <div class="rd-navbar-sidebar scroller scroller-vertical">
+              <div class="rd-navbar-sidebar-panel">
+                <div>
+                  <div class="group-15">
+                    <div class="rd-navbar-brand"><a class="desktop-brand" href="{% url 'home' %}"><b class="text-white">Demo</b></a><a class="mobile-brand" href="{% url 'home' %}"><img src="{% static 'www/images/logo-1-black-217x38.png' %}" alt=""/></a></div>
+                    <div class="rd-navbar-sidebar-search"> 
+                      <input class="form-control" type="text" placeholder="Search"/>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary rd-navbar-sidebar-toggle" data-navigation-switch="data-navigation-switch"><span class="fa-bars"></span></button>
+              </div>
+              <ul class="rd-navbar-nav">
+                <li class="rd-navbar-nav-item">
+                  <div class="rd-navbar-title"><span class="rd-navbar-title-icon"><span class="fa-ellipsis-h"></span></span><span class="rd-navbar-title-text">Menu</span></div>
+                </li>
+                <li class="rd-navbar-nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}"><a class="rd-navbar-link" href="{% url 'home' %}"><span class="rd-navbar-icon fa-home"></span><span class="rd-navbar-link-text">Dashboard</span></a>
+                </li>
+                <li class="rd-navbar-nav-item {% if request.resolver_match.url_name == 'categories' %}active{% endif %}"><a class="rd-navbar-link" href="{% url 'categories' %}"><span class="rd-navbar-icon fa-tags"></span><span class="rd-navbar-link-text">Categorías</span></a>
+                </li>
+                <li class="rd-navbar-nav-item {% if request.resolver_match.url_name == 'products' %}active{% endif %}"><a class="rd-navbar-link" href="{% url 'products' %}"><span class="rd-navbar-icon fa-dropbox"></span><span class="rd-navbar-link-text">Productos</span></a>
+                </li>
+                <li class="rd-navbar-nav-item {% if request.resolver_match.url_name == 'extra_types' %}active{% endif %}"><a class="rd-navbar-link" href="{% url 'extra-types' %}"><span class="rd-navbar-icon fa-filter"></span><span class="rd-navbar-link-text">Tipos de adicionales</span></a>
+                </li>
+                <li class="rd-navbar-nav-item {% if request.resolver_match.url_name == 'extras' %}active{% endif %}"><a class="rd-navbar-link" href="{% url 'extras' %}"><span class="rd-navbar-icon fa-filter"></span><span class="rd-navbar-link-text">Adicionales</span></a>
+                </li>
+                <li class="rd-navbar-nav-item {% if request.resolver_match.url_name == 'orders' %}active{% endif %}"><a class="rd-navbar-link" href="{% url 'orders' %}"><span class="rd-navbar-icon fa-dropbox"></span><span class="rd-navbar-link-text">Pedidos</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
+    {% block content %}{% endblock %}
+    <footer class="footer footer-small">
+        <div class="d-flex justify-content-between align-items-center group-10">
+          <div>© BlackTheme</div>
+          <div><span>60GB of 350GB Free</span>
+            <button class="to-top btn btn-sm btn-primary"><span class="fa-chevron-up"></span></button>
+          </div>
+        </div>
+      </footer>
+      <div class="sidebar scroller">
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title"><span class="panel-icon fa-trophy"></span><span>Right Sidebar Content</span></h3>
+          </div>
+          <div class="panel-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat ac tortor eu viverra. Etiam ipsum neque, fermentum quis sagittis nec, hendrerit id diam. Mauris a tincidunt odio. Sed porttitor ex pulvinar, tristique sapien sed, malesuada nunc.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block js %}
+    
+    {% endblock js %}
+  </body>
+</html>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<section class="topbar">
+  <!-- Breadcrumbs-->
+  <ul class="breadcrumbs">
+    <li class="breadcrumbs-item">
+      <a class="breadcrumbs-link" href="{% url 'home' %}"
+        ><span class="breadcrumbs-icon fa-home"></span><span>Dashboard</span></a
+      >
+    </li>
+    <li class="breadcrumbs-item">Pedidos</li>
+  </ul>
+</section>
+<section class="section-sm">
+  <div class="container-fluid">
+    <div class="panel panel-nav">
+      <div class="panel-body p-0">
+        <div class="table-responsive">
+          <table class="table table-borderless table-vertical-align">
+            <thead>
+              <tr class="border-bottom bg-lighter">
+                <th>Fecha</th>
+                <th>ID</th>
+                <th>Precio total</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+              <tr>
+                <td>{{order.date}}</td>
+                <td>#{{order.id}}</td>
+                <td>{{order.total}}</td>
+                {% if order.state == 'pr' %}
+                  <td class="text-info">Procesando</td>
+                {% elif order.state == 'co' %}
+                  <td class="text-success">Completado</td>
+                {% else %}
+                  <td class="text-danger">Cancelado</td>
+                {% endif %}
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle btn-light btn-sm" data-toggle="dropdown">
+                      <span>Acciones</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'order-detail' order.id %}">Detalle</a>
+                      <a class="dropdown-item" href="#">Eliminar</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Complete</a>
+                      <a class="dropdown-item" href="#">Pending</a>
+                      <a class="dropdown-item" href="#">Canceled</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
