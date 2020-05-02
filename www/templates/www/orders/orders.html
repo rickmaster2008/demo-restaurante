@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} {% load tz %} {% block content %}
 <section class="topbar">
   <!-- Breadcrumbs-->
   <ul class="breadcrumbs">
@@ -10,6 +10,7 @@
     <li class="breadcrumbs-item">Pedidos</li>
   </ul>
 </section>
+{% get_current_timezone as TIME_ZONE %}
 <section class="section-sm">
   <div class="container-fluid">
     <div class="panel panel-nav">
@@ -28,7 +29,9 @@
             <tbody>
             {% for order in orders %}
               <tr>
+                {% timezone 'America/Lima' %}
                 <td>{{order.date}}</td>
+                {% endtimezone %}
                 <td>#{{order.id}}</td>
                 <td>{{order.total}}</td>
                 {% if order.state == 'pr' %}
