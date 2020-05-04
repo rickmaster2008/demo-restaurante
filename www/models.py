@@ -41,6 +41,11 @@ class Order(models.Model):
     states = [('pr', 'Procesando'), ('co', 'Completado'), ('ca', 'Cancelado')]
     date = models.DateTimeField(auto_now_add=True)
     state = models.CharField(max_length=2, choices=states, default='pr')
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
+    interior = models.CharField(max_length=10, blank=True, null=True)
+    notes = models.TextField(max_length=300, blank=True, null=True)
     total = models.FloatField()
 
     def __str__(self):

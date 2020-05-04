@@ -21,6 +21,11 @@
               <tr class="border-bottom bg-lighter">
                 <th>Fecha</th>
                 <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Interior</th>
+                <th>Notas</th>
                 <th>Precio total</th>
                 <th>Estado</th>
                 <th>Acciones</th>
@@ -33,6 +38,11 @@
                 <td>{{order.date}}</td>
                 {% endtimezone %}
                 <td>#{{order.id}}</td>
+                <td>{{order.name}}</td>
+                <td>{{order.phone}}</td>
+                <td>{{order.address}}</td>
+                <td>{% if order.interior %}{{order.interior}}{% endif %}</td>
+                <td>{% if order.notes %}{{order.notes}}{% endif %}</td>
                 <td>{{order.total}}</td>
                 {% if order.state == 'pr' %}
                   <td class="text-info">Procesando</td>
