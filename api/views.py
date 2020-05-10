@@ -17,10 +17,3 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderSerializer
-
-    # def create(self, request, *args, **kwargs):
-    #     order_items = request.data.pop('order_items')
-    #     order_serializer = serializers.OrderSerializer(data=request.data)
-    #     if order_serializer.is_valid(raise_exception=True):
-    #         order_serializer.save()
-    #     return super().create(request, *args, **kwargs)
