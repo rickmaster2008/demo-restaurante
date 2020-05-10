@@ -1,4 +1,6 @@
 from django.db import models
+from .user.models import Customer
+from .order.models import Order, OrderItem, OrderItemChoice
 
 class Product(models.Model):
     sku = models.CharField(max_length=100, blank=True, null=True)
@@ -6,9 +8,9 @@ class Product(models.Model):
     description = models.TextField(max_length=300, blank=True, null=True)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True, related_name='products')
     image = models.ImageField(blank=True, null=True)
-    price = models.FloatField()
+    price = models.DecimalField(decimal_places=2, max_digits=7)
     in_stock = models.BooleanField(default=True)
-    discount_price = models.FloatField(blank=True, null=True)
+    discount_price = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=7)
 
     def __str__(self):
         return self.name
@@ -19,6 +21,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = 'Categories'
     
 class ChoiceType(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='choice_types')
@@ -31,40 +36,8 @@ class ChoiceType(models.Model):
 class Choice(models.Model):
     choice_type = models.ForeignKey(ChoiceType, on_delete=models.CASCADE, related_name='choices')
     name = models.CharField(max_length=100)
-    price = models.FloatField(blank=True, null=True)
+    price = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=7)
     chosen = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-class Order(models.Model):
-    states = [('pr', 'Procesando'), ('co', 'Completado'), ('ca', 'Cancelado')]
-    date = models.DateTimeField(auto_now_add=True)
-    state = models.CharField(max_length=2, choices=states, default='pr')
-    name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=20)
-    address = models.CharField(max_length=100)
-    interior = models.CharField(max_length=10, blank=True, null=True)
-    notes = models.TextField(max_length=300, blank=True, null=True)
-    total = models.FloatField()
-
-    def __str__(self):
-        return '#' + str(self.id)
-
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')
-    sku = models.CharField(max_length=100, blank=True, null=True)
-    name = models.CharField(max_length=100)
-    price = models.FloatField()
-    quantity = models.IntegerField()
-
-    def __str__(self):
-        return self.name
-
-class OrderItemChoice(models.Model):
-    order_item = models.ForeignKey(OrderItem, on_delete=models.CASCADE, related_name='order_item_choices')
-    name = models.CharField(max_length=100)
-    price = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return self.name
