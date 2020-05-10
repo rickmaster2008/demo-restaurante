@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'www',
     'api',
+    'custom_auth',
     
     'django.contrib.admin',
     'django.contrib.auth',

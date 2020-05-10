@@ -1,5 +1,6 @@
 from django import forms
 from . import models
+
 class ProductForm(forms.ModelForm):
     class Meta:
         model = models.Product
@@ -14,6 +15,7 @@ class ProductForm(forms.ModelForm):
             'in_stock': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
         }
 
+
 class ChoiceTypeForm(forms.ModelForm):
     class Meta:
         model = models.ChoiceType
@@ -23,6 +25,7 @@ class ChoiceTypeForm(forms.ModelForm):
             'is_multiple': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
             'product': forms.Select(attrs={'class': 'form-control'}),
         }
+
 
 class ChoiceForm(forms.ModelForm):
     class Meta:
@@ -34,6 +37,7 @@ class ChoiceForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Precio'}),
             'chosen': forms.CheckboxInput(attrs={'class': 'custom-control-input'})
         }
+
 
 class CategoryForm(forms.ModelForm):
     class Meta:
