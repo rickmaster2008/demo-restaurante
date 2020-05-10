@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 <section class="topbar">
         <!-- Breadcrumbs-->
@@ -154,7 +156,7 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <th scope="row"><img src="images/products/product-04-50x50.jpg" width="20" height="20" alt=""></th>
+                                <th scope="row"><img src="{% static 'www/images/products/product-04-50x50.jpg' %}" width="20" height="20" alt=""></th>
                                 <td>Apple Iphone 16GB - Silver</td>
                                 <td>#51362</td>
                                 <td>$1299</td>
@@ -170,7 +172,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <th scope="row"><img src="images/products/product-01-50x50.jpg" width="20" height="20" alt=""></th>
+                                <th scope="row"><img src="{% static 'www/images/products/product-01-50x50.jpg' %}" width="20" height="20" alt=""></th>
                                 <td>Apple iPod 4G - Silver</td>
                                 <td>#21362</td>
                                 <td>$215</td>
@@ -186,7 +188,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <th scope="row"><img src="images/products/product-02-50x50.jpg" width="20" height="20" alt=""></th>
+                                <th scope="row"><img src="{% static 'www/images/products/product-02-50x50.jpg' %}" width="20" height="20" alt=""></th>
                                 <td>Apple Smart Watch - 1G</td>
                                 <td>#15262</td>
                                 <td>$455</td>
@@ -202,7 +204,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <th scope="row"><img src="images/products/product-03-50x50.jpg" width="20" height="20" alt=""></th>
+                                <th scope="row"><img src="{% static 'www/images/products/product-03-50x50.jpg' %}" width="20" height="20" alt=""></th>
                                 <td>Apple Macbook 4th Gen - Silver</td>
                                 <td>#66362</td>
                                 <td>$1699</td>
@@ -368,25 +370,25 @@
                 <div class="panel-body p-0">
                   <ul class="list-unstyled list-divided">
                     <li class="px-3 py-2 progress-wrap-1">
-                      <div class="progress-wrap-content"><img class="mr-2" src="images/image-16-16x16.png" width="16" height="16" alt=""><a class="text-light" href="#">Chrome</a></div>
+                      <div class="progress-wrap-content"><img class="mr-2" src="{% static 'www/images/image-16-16x16.png' %}" width="16" height="16" alt=""><a class="text-light" href="#">Chrome</a></div>
                       <div class="progress">
                         <div class="progress-bar progress-200" role="progressbar" style="width: 24%" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100">24</div>
                       </div>
                     </li>
                     <li class="px-3 py-2 progress-wrap-1">
-                      <div class="progress-wrap-content"><img class="mr-2" src="images/image-17-16x16.png" width="16" height="16" alt=""><a class="text-light" href="#">Firefox</a></div>
+                      <div class="progress-wrap-content"><img class="mr-2" src="{% static 'www/images/image-17-16x16.png' %}" width="16" height="16" alt=""><a class="text-light" href="#">Firefox</a></div>
                       <div class="progress">
                         <div class="progress-bar progress-200" role="progressbar" style="width: 32%" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100">32</div>
                       </div>
                     </li>
                     <li class="px-3 py-2 progress-wrap-1">
-                      <div class="progress-wrap-content"><img class="mr-2" src="images/image-18-16x16.png" width="16" height="16" alt=""><a class="text-light" href="#">Explorer</a></div>
+                      <div class="progress-wrap-content"><img class="mr-2" src="{% static 'www/images/image-18-16x16.png' %}" width="16" height="16" alt=""><a class="text-light" href="#">Explorer</a></div>
                       <div class="progress">
                         <div class="progress-bar progress-200" role="progressbar" style="width: 18%" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">18</div>
                       </div>
                     </li>
                     <li class="px-3 py-2 progress-wrap-1">
-                      <div class="progress-wrap-content"><img class="mr-2" src="images/image-19-16x16.png" width="16" height="16" alt=""><a class="text-light" href="#">Safari</a></div>
+                      <div class="progress-wrap-content"><img class="mr-2" src="{% static 'www/images/image-19-16x16.png' %}" width="16" height="16" alt=""><a class="text-light" href="#">Safari</a></div>
                       <div class="progress">
                         <div class="progress-bar progress-200" role="progressbar" style="width: 14%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">14</div>
                       </div>

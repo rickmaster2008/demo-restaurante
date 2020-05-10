@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from . import models
 from . import forms
 
-@login_required('login')
+@login_required(login_url='/login')
 def home(req):
     return render(req, 'www/home.html')
 
