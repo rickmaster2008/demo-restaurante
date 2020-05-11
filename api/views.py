@@ -1,9 +1,10 @@
 from rest_framework import viewsets, generics
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.response import responses
 from rest_framework.decorators import api_view
 from www import models
 from . import serializers
+
+from .cart.views import CartViewSet
 
 class ProductView(viewsets.ReadOnlyModelViewSet):
     queryset = models.Product.objects.all()
