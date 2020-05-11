@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from www import models
 from . import serializers
 
-from .cart.views import CartViewSet
+from .cart.views import CartView
 
 class ProductView(viewsets.ReadOnlyModelViewSet):
     queryset = models.Product.objects.all()

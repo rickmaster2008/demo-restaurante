@@ -11,7 +11,6 @@ router = routers.DefaultRouter()
 router.register('products', views.ProductView)
 router.register('categories', views.CategoryViewSet)
 router.register('orders', views.OrderViewSet)
-router.register('carts', views.CartViewSet)
 
 urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
