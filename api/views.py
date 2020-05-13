@@ -9,9 +9,11 @@ from . import serializers
 
 from .cart.views import CartView
 
+
 class ProductView(viewsets.ReadOnlyModelViewSet):
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
+
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = models.Category.objects.all()
@@ -23,11 +25,10 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.OrderSerializer
 
 
-class CartView(generics.RetrieveAPIView):
-    def get(self, request, *args, **kwargs):
-        customer = models.Customer.objects.get(user=request.user)
-        cart = models.Cart.objects.get(customer=customer)
-        return  Response(serializers.CartSerializer(instance=cart).data)
+class CartView(generics.RetrieveUpdateAPIView):
+    queryset = models.Cart.objects.all()
+    serializer_class = serializers.CartSerializer
+
 
 class CustomerView(generics.RetrieveUpdateDestroyAPIView):
 
