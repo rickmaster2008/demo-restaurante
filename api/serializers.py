@@ -1,5 +1,9 @@
+from django.contrib.auth.models import User
 from www import models
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .cart.serializers import CartSerializer
 
 class ChoiceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -54,3 +58,16 @@ class OrderSerializer(serializers.ModelSerializer):
             for order_item_choice_data in order_item_choices:
                 models.OrderItemChoice.objects.create(order_item=order_item, **order_item_choice_data)
         return order
+
+class CustomerSerializer(serializers.ModelSerializer):
+    cart = CartSerializer()
+    class Meta:
+        model = models.Customer
+        fields = '__all__'
+
+
+# class LoginSerializer(serializers.ModelSerializer):
+#     customer = CustomerSerializer()
+#     class Meta:
+#         model = User
+#         fields = ['username', 'customer']

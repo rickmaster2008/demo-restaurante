@@ -9,3 +9,6 @@ class Customer(models.Model):
     interior = models.CharField(max_length=10, blank=True, null=True)
     locality = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.username

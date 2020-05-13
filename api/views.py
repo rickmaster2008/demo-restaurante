@@ -1,6 +1,9 @@
 from rest_framework import viewsets, generics
-from rest_framework.response import responses
-from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from rest_framework_simplejwt.tokens import RefreshToken
+
 from www import models
 from . import serializers
 
@@ -18,3 +21,16 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderSerializer
+
+
+class CartView(generics.RetrieveAPIView):
+    def get(self, request, *args, **kwargs):
+        customer = models.Customer.objects.get(user=request.user)
+        cart = models.Cart.objects.get(customer=customer)
+        return  Response(serializers.CartSerializer(instance=cart).data)
+
+class CustomerView(generics.RetrieveUpdateDestroyAPIView):
+
+    def get(self, req, *args, **kwargs):
+        customer = models.Customer.objects.get(user=req.user)
+        return Response(serializers.CustomerSerializer(instance=customer).data)
