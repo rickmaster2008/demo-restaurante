@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DeleteView
+from django.urls import reverse_lazy
 from . import models
 from . import forms
 
@@ -172,3 +174,13 @@ def order_detail(req, id):
         'order': order,
     }
     return render(req, 'www/orders/order_detail.html', context)
+
+class CustomerListView(ListView):
+    model = models.Customer
+    template_name = 'www/customers/customers.html'
+    context_object_name = 'customers'
+
+class CustomerDeleteView(DeleteView):
+    model = models.Customer
+    success_url = reverse_lazy('customers')
+    

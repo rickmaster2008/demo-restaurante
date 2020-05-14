@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="topbar">
+  <!-- Breadcrumbs-->
+  <ul class="breadcrumbs">
+    <li class="breadcrumbs-item">
+      <a class="breadcrumbs-link" href="{% url 'home' %}"
+        ><span class="breadcrumbs-icon fa-home"></span><span>Dashboard</span></a
+      >
+    </li>
+    <li class="breadcrumbs-item">Clientes</li>
+  </ul>
+</section>
+<section class="section-sm">
+  <div class="container-fluid">
+    <div class="panel panel-nav">
+      <div class="panel-body p-0">
+        <div class="table-responsive">
+          <table class="table table-borderless table-vertical-align">
+            <thead>
+              <tr class="border-bottom bg-lighter">
+                <th>ID</th>
+                <th>Nombre de usuario</th>
+                <th>Dirección</th>
+                <th>Interior</th>
+                <th>Localidad</th>
+                <th>Ciudad</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+              <tr>
+                <td>#{{customer.id}}</td>
+                <td>{{customer.user.username}}</td>
+                <td>{{customer.address|default_if_none:""}}</td>
+                <td>{{customer.interior|default_if_none:""}}</td>
+                <td>{{customer.locality|default_if_none:""}}</td>
+                <td>{{customer.city|default_if_none:""}}</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle btn-light btn-sm" data-toggle="dropdown">
+                      <span>Acciones</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Detalle</a>
+                      <a class="dropdown-item" href="{% url 'customer-delete' customer.id %}">Eliminar</a>
+                      <div class="dropdown-divider"></div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

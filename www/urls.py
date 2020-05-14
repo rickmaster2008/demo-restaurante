@@ -11,10 +11,12 @@ urlpatterns = [
     path('categories/<int:id>/delete/', views.category_delete, name='category-delete'),
     path('extras/', views.extras, name='extras'),
     path('extras/<int:id>/', views.extra_detail, name='extra-detail'),
-    path('extras/<int:id>/delete', views.extra_delete, name='extra-delete'),
+    path('extras/<int:id>/delete/', views.extra_delete, name='extra-delete'),
     path('extra-types/', views.extra_types, name='extra-types'),
     path('extras-types/<int:id>/', views.extra_type_detail, name='extra-type-detail'),
     path('extras-types/<int:id>/delete', views.extra_type_delete, name='extra-type-delete'),
     path('orders/', views.orders, name='orders'),
     path('orders/<int:id>/', views.order_detail, name='order-detail'),
+    path('customers/', views.CustomerListView.as_view(), name='customers'),
+    path('customers/<int:pk>/delete/', views.CustomerDeleteView.as_view(), name='customer-delete')
 ]
