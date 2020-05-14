@@ -1,6 +1,8 @@
+from django.contrib.auth.models import User
 from rest_framework import viewsets, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -35,3 +37,8 @@ class CustomerView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, req, *args, **kwargs):
         customer = models.Customer.objects.get(user=req.user)
         return Response(serializers.CustomerSerializer(instance=customer).data)
+
+class RegisterView(generics.CreateAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = serializers.RegisterSerializer
+    queryset = User.objects.all()
